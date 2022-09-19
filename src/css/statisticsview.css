@@ -1,0 +1,30 @@
+.statistics-view {
+    width: 100%;
+    height : 100%;
+}
+
+.statistics-block{
+    margin: 15px;
+}
+.statistics-most-cost-user{
+    width: 30%;
+    height: 30%;
+    margin-left: 5%;
+
+}
+.statistics-most-cost{
+
+}
+.statistics-most-cost-book{
+    width: 30%;
+    height: 30%;
+    margin-left: 5%;
+
+}
+.statistics-header{
+    margin: 2%;
+}
+.statistics-cards{
+    display: flex;
+    flex-direction: row;
+}

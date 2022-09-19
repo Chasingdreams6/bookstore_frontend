@@ -1,0 +1,34 @@
+.cart-view {
+    width: 100%;
+    height: 100%;
+}
+
+.cart-div {
+    width: 100%;
+    height: 80%;
+}
+
+.cart-opt-buy {
+    margin: 10px;
+}
+
+.cart-opt-cancel {
+    margin: 10px;
+}
+
+.cart-title {
+    margin: 10px;
+}
+
+.cart-head {
+    display: flex;
+    flex-direction: row;
+    width: 10%;
+}
+.cart-buy-all {
+    margin-top: 5%;
+}
+.cart-container {
+    /*//height: 80%;*/
+    width: 100%;
+}

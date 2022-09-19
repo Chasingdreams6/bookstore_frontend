@@ -1,0 +1,29 @@
+
+
+.login-block {
+    width: 500px;
+    height: 350px;
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    background-color: rgba(248, 242, 244, 0.15);
+    padding: 20px;
+}
+
+.login-view{
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/background.jpg");
+}
+
+.login-forgot {
+    float: right;
+}
+
+.ant-col-rtl .login-forgot {
+    float: left;
+}
+
+.login-button {
+    width: 100%;
+}

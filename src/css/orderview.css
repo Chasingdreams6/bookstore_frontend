@@ -1,0 +1,34 @@
+.order-view {
+    background: #fcfcfc;
+    width: 100%;
+    height: 100%;
+}
+.order-good{
+    display: flex;
+    flex-direction: row;
+}
+
+.order-good-text {
+    margin-left: 20px;
+}
+
+.order{
+    margin: 2%;
+    width: 40%;
+}
+
+.order-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*height: 85%;*/
+}
+.user-order-rangepicker {
+    margin-left: 5px;
+}
+.wrapped-order-rangepicker{
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+}

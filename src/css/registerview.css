@@ -1,0 +1,19 @@
+.register-block {
+    width: 500px;
+    height: 600px;
+    position: absolute;
+    left: 30%;
+    top: 10%;
+    background-color: rgba(248, 242, 244, 0.15);
+    padding: 20px;
+}
+
+.register-view{
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/background.jpg");
+}
+
+.register-button{
+    width: 100%;
+}

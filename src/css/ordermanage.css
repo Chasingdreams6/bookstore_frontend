@@ -1,0 +1,28 @@
+
+
+.order-manage-view {
+    width: 100%;
+    height : 100%;
+}
+
+.order-manage-block{
+    margin: 15px;
+    width: 30%;
+}
+
+.order-manage-orders {
+    margin: 15px;
+    width: 30%;
+}
+
+.order-manage-timepicker{
+    margin: auto;
+}
+.order-manage-all-blocks {
+    display: flex;
+    flex-direction: row;
+}
+
+.order-manage-add-button {
+    float: right;
+}

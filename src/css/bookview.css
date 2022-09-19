@@ -1,0 +1,28 @@
+
+
+.bv-content{
+    background-color: #fff;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.bv-sidebar{
+    width: 200px;
+    margin-right: 10px;
+    height: 100%;
+}
+
+.bv-book{
+    width: 220px;
+    height: 300px;
+}
+
+.bv-book-graph{
+    width: 200px;
+    height: 200px;
+}
+
+.bv-pagination {
+    margin-top: 10px;
+    text-align: center;
+}

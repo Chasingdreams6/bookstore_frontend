@@ -1,0 +1,14 @@
+
+
+.user-manage-view {
+    width: 100%;
+    height : 100%;
+}
+
+.user-manage-block{
+    margin: 15px;
+}
+
+.user-manage-add-button {
+    float: right;
+}

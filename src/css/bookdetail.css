@@ -1,0 +1,22 @@
+.bookdetail-view {
+    width: 100%;
+    height: 100%;
+}
+.book-detail {
+    width: 100%;
+    height: 80%;
+}
+
+.book-detail-graph{
+     max-height: 500px;
+     max-width: 500px;
+}
+
+.book-detail-info {
+    width: 60%;
+    float: right;
+}
+
+.book-detail-buy {
+    float : right;
+}

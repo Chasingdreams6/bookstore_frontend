@@ -1,0 +1,14 @@
+
+
+.book-manage-view {
+    width: 100%;
+    height : 100%;
+}
+
+.book-manage-block{
+    margin: 15px;
+}
+
+.book-manage-add-button {
+    float: right;
+}
