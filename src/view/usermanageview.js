@@ -10,7 +10,7 @@ function UserManageView(props){
     return (
         <div className="user-manage-view">
             {/*<UserHead/>*/}
-            <RootHead/>
+            <RootHead profile={props.profile}/>
             <UserManage
                 users = {props.users}
                 deleteUserByName={props.deleteUserByName}

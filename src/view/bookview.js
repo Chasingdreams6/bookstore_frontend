@@ -11,6 +11,7 @@ function BookView(props){
       <Layout>
             <UserHeadSearch
                 handleSearch={props.handleSearch}
+                profile={props.profile}
             />
             <BookContent
                 bookData={props.bookData}

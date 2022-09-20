@@ -9,7 +9,7 @@ function StatisticsView(props) {
     return (
       <div className="statistics-view">
           {/*<UserHead/>*/}
-          <RootHead/>
+          <RootHead profile={props.profile}/>
           <Statistics
 
           />

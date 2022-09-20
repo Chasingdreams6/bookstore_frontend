@@ -331,6 +331,7 @@ function App(){
                     deleteBookByISBN={deleteBookByISBN}
                     changeBook={changeBook}
                     handleSearch={handleSearch}
+                    profile={profile}
                 />}
                 />
 
@@ -339,12 +340,14 @@ function App(){
                     deleteUserByName={deleteUserByName}
                     changeUser={changeUser}
                     setUsers={setUsersWrapped}
+                    profile={profile}
                 />}
                 />
 
                 <Route exact path="/ordermanage" element={<OrderManageView
                     users={users}
                     setUsers={setUsersWrapped}
+                    profile={profile}
                 />}
 
                 />
@@ -367,7 +370,7 @@ function App(){
                     profile={profile}
                 />}/>
 
-                <Route exact path="/statistics" element={<StatisticsView/>}/>
+                <Route exact path="/statistics" element={<StatisticsView profile={profile}/>}/>
 
                 <Route exact path="/addbook" element={<AddBookView/>}/>
             </Routes>

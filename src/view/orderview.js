@@ -8,7 +8,7 @@ import Order from "../components/order";
 function OrderView(props){
     return (
         <div className="order-view">
-            <UserHead/>
+            <UserHead profile={props.profile}/>
             <Order
                 orderData={props.orderData}
                 changeOrderData={props.changeOrderData}

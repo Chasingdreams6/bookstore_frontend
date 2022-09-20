@@ -8,7 +8,7 @@ import RootHead from "../components/roothead";
 function OrderManageView(props){
     return (
         <div className="order-manage-view">
-            <RootHead/>
+            <RootHead profile={props.profile}/>
             <OrderManage
                 users = {props.users}
                 //deleteUserByName={props.deleteUserByName}

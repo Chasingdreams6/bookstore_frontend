@@ -8,7 +8,7 @@ import RootHead from "../components/roothead";
 function BookManageView(props){
     return (
         <div className="book-manage-view">
-            <RootHead handleSearch = {props.handleSearch}/>
+            <RootHead handleSearch = {props.handleSearch} profile = {props.profile}/>
             <BookManage
                 bookData = {props.bookData}
                 changeBook = {props.changeBook}

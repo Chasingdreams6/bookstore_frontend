@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 function BookDetailView(props) {
         return (
             <div className="bookdetail-view">
-                <UserHead/>
+                <UserHead profile={props.profile}/>
                 <BookDetail isbn={useParams().id} profile={props.profile}/>
                 <MyFooter/>
             </div>

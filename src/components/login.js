@@ -13,6 +13,8 @@ function MyLogin(props){
         console.log(values);
         fetch(`${constant.BACKEND}/user/login`, {
             method: 'POST',
+            credentials : 'include',
+            mode : 'cors',
             headers:{
                 'Content-Type': 'application/json',
             },

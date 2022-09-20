@@ -6,7 +6,7 @@ import Cart from "../components/cart";
 function CartView(props){
     return (
       <div className="cart-view">
-          <UserHead/>
+          <UserHead profile={props.profile}/>
           <Cart
               cartData={props.cartData}
               bookData={props.bookData}

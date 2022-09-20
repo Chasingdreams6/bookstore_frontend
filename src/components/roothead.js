@@ -5,9 +5,9 @@ import {Link} from "react-router-dom";
 import {BookOutlined, CarOutlined, LogoutOutlined, ShoppingCartOutlined, UserOutlined} from "@ant-design/icons";
 import  "../css/base.css";
 import Search from "antd/es/input/Search";
+import Logout from "./logout";
 
-class RootHead extends React.Component {
-    render() {
+function RootHead(props){
         return (
             <Header className="root-header">
                 <div className="logo">
@@ -50,14 +50,11 @@ class RootHead extends React.Component {
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="5">
-                        <Link to="/login">
-                            <LogoutOutlined/>
-                        </Link>
+                        <Logout profile={props.profile}/>
                     </Menu.Item>
                 </Menu>
             </Header>
         );
-    }
 }
 
 export default RootHead;

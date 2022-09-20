@@ -6,9 +6,10 @@ import {CarOutlined, LogoutOutlined, ShoppingCartOutlined, UserOutlined} from "@
 import "../css/base.css"
 import {Link} from "react-router-dom";
 import Search from "antd/es/input/Search";
+import Logout from "./logout";
 
 
-function UserHead(){
+function UserHead(props){
     return (
       <Header className="user-header">
           <div className="logo">
@@ -38,9 +39,7 @@ function UserHead(){
                   </Link>
               </Menu.Item>
               <Menu.Item key="4">
-                  <Link to="/login">
-                        <LogoutOutlined/>
-                  </Link>
+                  <Logout profile={props.profile}/>
               </Menu.Item>
           </Menu>
       </Header>
