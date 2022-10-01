@@ -28,6 +28,7 @@ function MyLogin(props){
                         console.log(json.detail);
                         if (json.code === 200) {
                             props.changeProfile(json.detail);
+                            props.getWebSocketConnection(json.detail.id);
                             navigate("/");
                         }
                         else if (json.code === -300){
