@@ -1,14 +1,12 @@
 
-import MyFooter from "../components/footer";
 import React from "react";
-import UserHead from "../components/head";
 import OrderManage from "../components/ordermanage";
 import RootHead from "../components/roothead";
 
 function OrderManageView(props){
     return (
         <div className="order-manage-view">
-            <RootHead profile={props.profile}/>
+            <RootHead profile={props.profile} closeWsConnection={props.closeWsConnection}/>
             <OrderManage
                 users = {props.users}
                 //deleteUserByName={props.deleteUserByName}

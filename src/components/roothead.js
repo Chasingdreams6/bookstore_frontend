@@ -50,7 +50,7 @@ function RootHead(props){
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="5">
-                        <Logout profile={props.profile}/>
+                        <Logout profile={props.profile} closeWsConnection={props.closeWsConnection}/>
                     </Menu.Item>
                 </Menu>
             </Header>

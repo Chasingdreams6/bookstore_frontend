@@ -47,7 +47,7 @@ function UserHeadSearch(props){
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="4">
-                    <Logout profile={props.profile}/>
+                    <Logout profile={props.profile} closeWsConnection={props.closeWsConnection}/>
                 </Menu.Item>
             </Menu>
         </Header>

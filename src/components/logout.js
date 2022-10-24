@@ -24,6 +24,7 @@ function Logout(props) {
                 body : JSON.stringify(values)
             }).then((res)=>{
                 if (res.ok) {
+                    props.closeWsConnection();
                     res.json().then((json)=>{
                         console.log(json.detail);
                         message.info(json.detail);

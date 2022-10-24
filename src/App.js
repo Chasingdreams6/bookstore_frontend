@@ -78,6 +78,12 @@ function App(){
             changeFlushCart();
         }
     }
+
+    function closeWsConnection() {
+        console.log("try to close ws");
+        ws.current?.close();
+    }
+
     function setUsersWrapped(users) {
         setUsers(users);
     }
@@ -327,19 +333,21 @@ function App(){
                     searchByPrice={searchByPrice}
                     toggleSearchPrice={toggleSearchPrice}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                 />}
                 />
                 <Route exact path="/login" element={<LoginView
                     changeProfile={changeProfile}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                     changeCartData={changeCartData}
                     getWebSocketConnection={getWebSocketConnection}
                 />}/>
 
                 <Route exact path="/register" element={<RegisterView changeProfile={changeProfile}/>}/>
-                <Route exact path='/bookdetail/:id' element={<BookDetailView profile={profile}/>}/>}/>
+                <Route exact path='/bookdetail/:id' element={<BookDetailView profile={profile} closeWsConnection={closeWsConnection}/>}/>}/>
                 <Route exact path='/profile' element={<ProfileView
-                    profile={profile} changeProfile={changeProfile}
+                    profile={profile} closeWsConnection={closeWsConnection} changeProfile={changeProfile}
                 />}/>
 
                 <Route exact path="/bookmanage" element={<BookManageView
@@ -347,6 +355,7 @@ function App(){
                     deleteBookByISBN={deleteBookByISBN}
                     changeBook={changeBook}
                     handleSearch={handleSearch}
+                    closeWsConnection={closeWsConnection}
                     profile={profile}
                 />}
                 />
@@ -357,6 +366,7 @@ function App(){
                     changeUser={changeUser}
                     setUsers={setUsersWrapped}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                 />}
                 />
 
@@ -364,6 +374,7 @@ function App(){
                     users={users}
                     setUsers={setUsersWrapped}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                 />}
 
                 />
@@ -372,6 +383,7 @@ function App(){
                     cartData={cartData}
                     bookData={allBooks}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                     changeCartData={changeCartData}
                     buyOneBook={buyOneBook}
                     buyAll={buyAll}
@@ -384,9 +396,10 @@ function App(){
                     changeOrderData={changeOrderData}
                     bookData={allBooks}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                 />}/>
 
-                <Route exact path="/statistics" element={<StatisticsView profile={profile}/>}/>
+                <Route exact path="/statistics" element={<StatisticsView profile={profile} closeWsConnection={closeWsConnection}/>}/>
 
                 <Route exact path="/addbook" element={<AddBookView/>}/>
             </Routes>

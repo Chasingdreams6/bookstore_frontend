@@ -8,7 +8,7 @@ import Profile from "../components/profile";
 function ProfileView(props){
     return (
         <div className="profile-view">
-            <UserHead profile={props.profile}/>
+            <UserHead profile={props.profile} closeWsConnection={props.closeWsConnection}/>
             <Profile
                 profile={props.profile}
                 changeProfile={props.changeProfile}
