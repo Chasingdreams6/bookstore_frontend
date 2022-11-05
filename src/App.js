@@ -21,6 +21,7 @@ import StatisticsView from "./view/statisticsview";
 import AddBookView from "./view/addbookview";
 import * as constant from "./utilities/constant";
 import io from 'socket.io-client';
+import FullTextSearchView from "./view/fullTextSearchView";
 
 function App(){
 
@@ -34,6 +35,7 @@ function App(){
     const [orderData, setOrderData] = useState([]);
     const [flushCart, setFlushCart] = useState(false);
     const [users, setUsers] = useState([]);
+    const [bookList, setBookList] = useState([]);
     //const navigate = useNavigate();
 
     // useEffect(
@@ -154,6 +156,22 @@ function App(){
             setBookData(search);
             setOpenSearch(true);
         }
+    }
+
+    function handleFullTextSearch(key) {
+        //console.log(key);
+        if (key === "") key = "*:*";
+        fetch(`${constant.BACKEND}/fulltextSearch?info=${key}`)
+            .then((res) => {
+                if (res.ok) {
+                    res.json().then((json) => {
+                        console.log(json.detail);
+                        setBookList(Object.values(json.detail));
+                    })
+                }
+            }).catch((error)=>{
+                console.log(error);
+        })
     }
 
     function searchByClass(item, key) {
@@ -349,6 +367,15 @@ function App(){
                 <Route exact path='/profile' element={<ProfileView
                     profile={profile} closeWsConnection={closeWsConnection} changeProfile={changeProfile}
                 />}/>
+
+                <Route exact path='/fullTextSearch' element={<FullTextSearchView
+                    profile={profile}
+                    closeWsConnection={closeWsConnection}
+                    handleFullTextSearch={handleFullTextSearch}
+                    bookList={bookList}
+                />}
+
+                />
 
                 <Route exact path="/bookmanage" element={<BookManageView
                     bookData={bookData}

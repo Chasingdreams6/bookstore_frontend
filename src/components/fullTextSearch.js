@@ -1,15 +1,12 @@
-
-import React from "react";
-import {Header} from "antd/es/layout/layout";
-import {Menu} from "antd";
-import {CarOutlined, LogoutOutlined, ShoppingCartOutlined, UserOutlined, ZoomOutOutlined} from "@ant-design/icons";
-import "../css/base.css"
 import {Link} from "react-router-dom";
 import Search from "antd/es/input/Search";
+import {Menu} from "antd";
+import {CarOutlined, ShoppingCartOutlined, UserOutlined, ZoomOutOutlined} from "@ant-design/icons";
 import Logout from "./logout";
+import {Header} from "antd/es/layout/layout";
+import React from "react";
 
-
-function UserHeadSearch(props){
+function FullTextSearch(props) {
     return (
         <Header className="user-header">
             <div className="logo">
@@ -23,11 +20,11 @@ function UserHeadSearch(props){
             </div>
 
             <Search
-                placeholder="input a ISBN or a Book's Name"
+                placeholder="input book information"
                 allowClear
                 enterButton="Search"
                 style={{width: 400, padding: 15}}
-                onSearch={props.handleSearch}
+                onSearch={props.handleFullTextSearch}
             />
 
             <Menu mode="horizontal" className="user-header-menu">
@@ -58,5 +55,4 @@ function UserHeadSearch(props){
         </Header>
     );
 }
-
-export default UserHeadSearch;
+export default FullTextSearch;
