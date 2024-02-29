@@ -9,7 +9,7 @@ import RegisterView from "./view/registerview";
 import Bookdetailview from "./view/bookdetailview";
 import BookDetailView from "./view/bookdetailview";
 import ProfileView from "./view/profileview";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import React from "react";
 import BookManageView from "./view/bookmanageview";
 import CartView from "./view/cartview";
@@ -20,9 +20,12 @@ import OrderManageView from "./view/ordermanageview";
 import StatisticsView from "./view/statisticsview";
 import AddBookView from "./view/addbookview";
 import * as constant from "./utilities/constant";
+import io from 'socket.io-client';
+import FullTextSearchView from "./view/fullTextSearchView";
 
 function App(){
 
+    const ws = useRef(null);
     const [allBooks, setAllBooks] = useState([]);
     const [cartData, setCartData] = useState([]);
     const [bookData, setBookData] = useState([]);
@@ -32,7 +35,15 @@ function App(){
     const [orderData, setOrderData] = useState([]);
     const [flushCart, setFlushCart] = useState(false);
     const [users, setUsers] = useState([]);
+    const [bookList, setBookList] = useState([]);
     //const navigate = useNavigate();
+
+    // useEffect(
+    //     ()=>{
+    //
+    //     },
+    //     [changeFlushCart, ws]
+    // );
 
     useEffect(
         () => {
@@ -52,8 +63,28 @@ function App(){
                     }
                 })
                 .catch((error)=>{console.log("Parse error" + error)});
+
+            // const client = io(`${constant.WS}/order`, {
+            //     transports: ['websocket'],
+            // })
         }, []
     )
+
+    function getWebSocketConnection(id) {
+        console.log("try to get ws");
+        ws.current = new WebSocket(`${constant.WS}/orderWs/${id}`);
+        ws.current.onmessage = m => {
+            console.log("ws get reply" + m.data);
+            let data = JSON.parse(m.data);
+            message.info(data.msg);
+            changeFlushCart();
+        }
+    }
+
+    function closeWsConnection() {
+        console.log("try to close ws");
+        ws.current?.close();
+    }
 
     function setUsersWrapped(users) {
         setUsers(users);
@@ -125,6 +156,22 @@ function App(){
             setBookData(search);
             setOpenSearch(true);
         }
+    }
+
+    function handleFullTextSearch(key) {
+        //console.log(key);
+        if (key === "") key = "*:*";
+        fetch(`${constant.BACKEND}/fulltextSearch?info=${key}`)
+            .then((res) => {
+                if (res.ok) {
+                    res.json().then((json) => {
+                        console.log(json.detail);
+                        setBookList(Object.values(json.detail));
+                    })
+                }
+            }).catch((error)=>{
+                console.log(error);
+        })
     }
 
     function searchByClass(item, key) {
@@ -243,16 +290,8 @@ function App(){
                 'Content-Type':'application/json'
             },
             body: JSON.stringify(request)
-        }).then((res)=>{
-            if (res.ok) {
-                res.json().then((json)=>{
-                    //console.log(json.msg);
-                    message.info(json.msg);
-                    changeFlushCart();  // do aync flush
-                })
-            }
-            else message.info("Oops! Network Error!");
-        }).catch((error)=>{console.log(error);})
+        });
+
     }
 
     function buyAll() { // try to buy all books
@@ -312,25 +351,39 @@ function App(){
                     searchByPrice={searchByPrice}
                     toggleSearchPrice={toggleSearchPrice}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                 />}
                 />
                 <Route exact path="/login" element={<LoginView
                     changeProfile={changeProfile}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                     changeCartData={changeCartData}
+                    getWebSocketConnection={getWebSocketConnection}
                 />}/>
 
                 <Route exact path="/register" element={<RegisterView changeProfile={changeProfile}/>}/>
-                <Route exact path='/bookdetail/:id' element={<BookDetailView profile={profile}/>}/>}/>
+                <Route exact path='/bookdetail/:id' element={<BookDetailView profile={profile} closeWsConnection={closeWsConnection}/>}/>}/>
                 <Route exact path='/profile' element={<ProfileView
-                    profile={profile} changeProfile={changeProfile}
+                    profile={profile} closeWsConnection={closeWsConnection} changeProfile={changeProfile}
                 />}/>
+
+                <Route exact path='/fullTextSearch' element={<FullTextSearchView
+                    profile={profile}
+                    closeWsConnection={closeWsConnection}
+                    handleFullTextSearch={handleFullTextSearch}
+                    bookList={bookList}
+                />}
+
+                />
 
                 <Route exact path="/bookmanage" element={<BookManageView
                     bookData={bookData}
                     deleteBookByISBN={deleteBookByISBN}
                     changeBook={changeBook}
                     handleSearch={handleSearch}
+                    closeWsConnection={closeWsConnection}
+                    profile={profile}
                 />}
                 />
 
@@ -339,12 +392,16 @@ function App(){
                     deleteUserByName={deleteUserByName}
                     changeUser={changeUser}
                     setUsers={setUsersWrapped}
+                    profile={profile}
+                    closeWsConnection={closeWsConnection}
                 />}
                 />
 
                 <Route exact path="/ordermanage" element={<OrderManageView
                     users={users}
                     setUsers={setUsersWrapped}
+                    profile={profile}
+                    closeWsConnection={closeWsConnection}
                 />}
 
                 />
@@ -353,6 +410,7 @@ function App(){
                     cartData={cartData}
                     bookData={allBooks}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                     changeCartData={changeCartData}
                     buyOneBook={buyOneBook}
                     buyAll={buyAll}
@@ -365,9 +423,10 @@ function App(){
                     changeOrderData={changeOrderData}
                     bookData={allBooks}
                     profile={profile}
+                    closeWsConnection={closeWsConnection}
                 />}/>
 
-                <Route exact path="/statistics" element={<StatisticsView/>}/>
+                <Route exact path="/statistics" element={<StatisticsView profile={profile} closeWsConnection={closeWsConnection}/>}/>
 
                 <Route exact path="/addbook" element={<AddBookView/>}/>
             </Routes>

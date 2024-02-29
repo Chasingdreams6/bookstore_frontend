@@ -2,13 +2,14 @@
 import React from "react";
 import {Header} from "antd/es/layout/layout";
 import {Menu} from "antd";
-import {CarOutlined, LogoutOutlined, ShoppingCartOutlined, UserOutlined} from "@ant-design/icons";
+import {CarOutlined, LogoutOutlined, ShoppingCartOutlined, UserOutlined, ZoomOutOutlined} from "@ant-design/icons";
 import "../css/base.css"
 import {Link} from "react-router-dom";
 import Search from "antd/es/input/Search";
+import Logout from "./logout";
 
 
-function UserHead(){
+function UserHead(props){
     return (
       <Header className="user-header">
           <div className="logo">
@@ -22,6 +23,11 @@ function UserHead(){
           </div>
 
           <Menu mode="horizontal" className="user-header-menu">
+              <Menu.Item key="5">
+                  <Link to="/fullTextSearch">
+                      <ZoomOutOutlined/>
+                  </Link>
+              </Menu.Item>
               <Menu.Item key="1">
                   <Link to="/order">
                         <CarOutlined/>
@@ -38,9 +44,7 @@ function UserHead(){
                   </Link>
               </Menu.Item>
               <Menu.Item key="4">
-                  <Link to="/login">
-                        <LogoutOutlined/>
-                  </Link>
+                  <Logout profile={props.profile} closeWsConnection={props.closeWsConnection}/>
               </Menu.Item>
           </Menu>
       </Header>
